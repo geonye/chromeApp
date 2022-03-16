@@ -1,31 +1,25 @@
-const range = document.querySelector("#input1");
-const guessNumber = document.querySelector("#input2");
+const range = document.querySelector("#input1"); 
+const guessNumber = document.querySelector("#input2"); 
 const usersubmit = document.querySelector("#submit");
-const compareSentence = document.querySelector("#compare");
-const resultSentence = document.querySelector("#result");
+const result = document.querySelector("#js-result");
 
-const HIDDEN_CLASSNAME = "hidden";
-
-function compare(event) {
+function handleGuessSubmit(event) {
     event.preventDefault();
-    const maxNum = parseInt(range.value, 10); //10진수
-    const userNum = parseInt(guessNumber.value, 10);
-    const randomNum = Math.ceil(Math.random() * maxNum);
-    result(userNum, randomNum);  //결과 출력 함수 호출
-}
 
-//결과 출력 함수
-function result(userNum, randomNum) {
-    if(userNum !== null){
-        compareSentence.classList.remove(HIDDEN_CLASSNAME);
-        resultSentence.classList.remove(HIDDEN_CLASSNAME);
-        compareSentence.innerHTML = `You chose: ${userNum}, the machine chose: ${randomNum}.`;
-        if(userNum === randomNum) { 
-            resultSentence.innerHTML = "You  won!";
-        } else {
-            resultSentence.innerHTML = "You  lost!";
-        }
+    //guessNumber와 range 모두 입력이 없어 값이 비었을 땐 handleGuessSubmit함수를 빠져나옵니다.
+    if(guessNumber === "" && range === "") {
+        return;
     }
+
+    const maxNum = parseInt(range.value, 10); //10진수
+    const randomNum = Math.ceil(Math.random() * maxNum);
+    const userNum = parseInt(guessNumber.value, 10);
+    const resultSpan = result.querySelector("span");
+
+    resultSpan.innerHTML = 
+    `You chose: ${userNum}, the machine chose: ${randomNum}.<br>
+    <strong> ${userNum === randomNum ? "You  won!" : "You  lost!"} <strong>`;
+    
 }
 
-usersubmit.addEventListener("submit", compare);
+usersubmit.addEventListener("submit", handleGuessSubmit);

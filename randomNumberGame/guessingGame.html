@@ -13,13 +13,15 @@
     </h2>
 
     <form id="submit">
-        <span>Guess the number:</span>
+        <label>Guess the number:</label>
         <input id="input2" type="number" min="0">
-        <input type="submit" value="Play!">
+        <button>Play!</button>
     </form>
 
-    <span class="hidden" id="compare"></span>
-    <h4 class="hidden" id="result" style="margin: 0px;"></h4>
+    <div id="js-result">
+      <span></span> 
+    </div>
+    
     <script src="guessingGame.js"></script>
   </body>
 </html>

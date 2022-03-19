@@ -1,13 +1,13 @@
-const clock = document.querySelector("h2#clock");
+const clock = document.querySelector("h1#clock");
 
+// 시간을 받아서 h1의 innerText에 업데이트
 function getClock() {
     const date = new Date(); //현재 날짜 & 시간 가져옴
-
-    //00:00:00 형태로 만들어주기 위해 String으로 값 변환 후 padStart() 사용
-    const hours = String(date.getHours()).padStart(2, "0"); 
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
-    clock.innerText = `${hours}:${minutes}:${seconds}`;
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds =date.getSeconds();
+    
+    clock.innerText = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 }
     
 getClock();
